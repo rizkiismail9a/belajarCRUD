@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Koleksi Buku Perpusatakaan Klan Bintang</h1>
+    <div id="container">
+      <div id="form-wrapper">
+        <h2>Tambah Buku</h2>
+        <form id="tambahBuku">
+          <label for="sampul">Sampul</label>
+          <input type="file" id="sampul" accept="image/jpeg, image/png, image/jpg" />
+
+          <label for="judul">Judul</label>
+          <input type="text" id="judul" />
+
+          <label for="pengarang">Pengarang</label>
+          <input type="text" id="pengarang" />
+
+          <label for="penerbit">Penerbit</label>
+          <input type="text" id="penerbit" />
+
+          <label for="tahunterbit">Tahun Terbit</label>
+          <input type="text" id="tahunterbit" />
+
+          <button type="submit" id="simpanBuku">Simpan Buku</button>
+        </form>
+      </div>
+      <div id="table-wrapper">
+        <table id="rakBuku" border="1" cellpadding="10" cellspacing="0">
+          <tr>
+            <th>No.</th>
+            <th>Sampul</th>
+            <th>Judul</th>
+            <th>Pengarang</th>
+            <th>Penerbit</th>
+            <th>Tahun Terbit</th>
+            <th>Aksi</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
