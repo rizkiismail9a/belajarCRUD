@@ -7,6 +7,10 @@ body {
   background-color: rgb(216, 216, 216);
 }
 h1 {
+  margin-bottom: 20px;
+}
+h1,
+h2 {
   text-align: center;
 }
 #container {
@@ -17,7 +21,7 @@ h1 {
 }
 #form-wrapper,
 #table-wrapper {
-  text-align: center;
+  box-sizing: border-box;
   width: 80%;
   margin: 20px auto 50px;
 }
@@ -33,6 +37,7 @@ label {
 input {
   margin-bottom: 20px;
   height: 2rem;
+  margin-right: 50px;
 }
 input[type="file"] {
   background-color: #fff;
