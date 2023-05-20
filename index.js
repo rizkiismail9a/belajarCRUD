@@ -48,7 +48,7 @@ const submitBook = () => {
   books.forEach((items, i) => {
     rakBuku.innerHTML += `<tr class="baris">
     <td class="nomor">${i + 1}</td>
-    <td><img src="${items.sampul} " alt="" width="100" /></td>
+    <td><img src="${items.sampul} " alt="bookcover" width="100" /></td>
     <td>${items.judul}</td>
     <td>${items.pengarang} </td>
     <td>${items.penerbit} </td>
