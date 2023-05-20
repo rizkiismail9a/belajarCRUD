@@ -20,23 +20,19 @@ formTambahBuku.addEventListener("submit", (e) => {
 
 // formTambahBuku.addEventListener("submit", tampilkanBuku);
 
-const ambilData = (parameter = 0) => {
-  if (parameter === 0) {
-    let dataSampul = sampul.files;
-    dataSampul = URL.createObjectURL(dataSampul[0]);
+const ambilData = () => {
+  let dataSampul = sampul.files;
+  dataSampul = URL.createObjectURL(dataSampul[0]);
 
-    let book = {
-      sampul: dataSampul,
-      judul: judul.value,
-      penerbit: penerbit.value,
-      pengarang: pengarang.value,
-      tahunTerbit: tahunTerbit.value,
-    };
-    books.push(book);
-    submitBook();
-  } else {
-    submitBook();
-  }
+  let book = {
+    sampul: dataSampul,
+    judul: judul.value,
+    penerbit: penerbit.value,
+    pengarang: pengarang.value,
+    tahunTerbit: tahunTerbit.value,
+  };
+  books.push(book);
+  submitBook();
 };
 
 const submitBook = () => {
@@ -104,6 +100,5 @@ const updateData = (i) => {
   document.getElementById("simpanBuku").style.display = "block";
   console.log(books);
   document.getElementById("editBuku").remove();
-  const parameter = 1;
-  ambilData(parameter);
+  submitBook();
 };
