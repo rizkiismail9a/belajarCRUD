@@ -10,26 +10,33 @@ let books = [];
 
 formTambahBuku.addEventListener("submit", (e) => {
   e.preventDefault();
-  if (judul.value == "" || pengarang.value == "" || tahunTerbit == "") {
+  if (judul.value === "" || pengarang.value === "" || tahunTerbit === "") {
     alert("judul atau pengarang atau tahun terbit tidak boleh kosong");
     return false;
   }
+
   ambilData();
 });
 
-const ambilData = () => {
-  let dataSampul = sampul.files;
-  dataSampul = URL.createObjectURL(dataSampul[0]);
+// formTambahBuku.addEventListener("submit", tampilkanBuku);
 
-  let book = {
-    sampul: dataSampul,
-    judul: judul.value,
-    penerbit: penerbit.value,
-    pengarang: pengarang.value,
-    tahunTerbit: tahunTerbit.value,
-  };
-  books.push(book);
-  submitBook();
+const ambilData = (parameter = 0) => {
+  if (parameter === 0) {
+    let dataSampul = sampul.files;
+    dataSampul = URL.createObjectURL(dataSampul[0]);
+
+    let book = {
+      sampul: dataSampul,
+      judul: judul.value,
+      penerbit: penerbit.value,
+      pengarang: pengarang.value,
+      tahunTerbit: tahunTerbit.value,
+    };
+    books.push(book);
+    submitBook();
+  } else {
+    submitBook();
+  }
 };
 
 const submitBook = () => {
@@ -50,7 +57,7 @@ const submitBook = () => {
     <td>${items.pengarang} </td>
     <td>${items.penerbit} </td>
     <td>${items.tahunTerbit} </td>
-    <td><button onclick="editBook(this, ${i})" >Edit</button> | <button onclick="deleteBook(this, ${i})" >Hapus</button></td>
+    <td ><button onclick="editBook(this, ${i})" >Edit</button> | <button onclick="deleteBook(this, ${i})" >Hapus</button></td>
   </tr>`;
   });
 };
@@ -66,10 +73,37 @@ const deleteBook = (e, i) => {
 };
 
 const editBook = (e, i) => {
+  document.getElementById("simpanBuku").style.display = "none";
+  const tombolUpdate = document.createElement("button");
+  tombolUpdate.innerHTML = "Update Data";
+  tombolUpdate.setAttribute("onclick", `updateData(${i})`);
+  tombolUpdate.setAttribute("id", "editBuku");
+  formTambahBuku.appendChild(tombolUpdate);
+
   tahunTerbit.value = e.parentElement.previousElementSibling.innerHTML;
   penerbit.value = e.parentElement.previousElementSibling.previousElementSibling.innerHTML;
   pengarang.value = e.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
   judul.value = e.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
-  e.parentElement.parentElement.remove();
-  books.splice(i, 1);
+
+  // formTambahBuku.onsubmit =
+  // e.parentElement.parentElement.remove();
+  // books.splice(i, 1);
+};
+
+const updateData = (i) => {
+  let dataSampul = sampul.files;
+  dataSampul = URL.createObjectURL(dataSampul[0]);
+  const dataBaru = {
+    sampul: dataSampul,
+    judul: judul.value,
+    penerbit: penerbit.value,
+    pengarang: pengarang.value,
+    tahunTerbit: tahunTerbit.value,
+  };
+  books.splice(i, 1, dataBaru);
+  document.getElementById("simpanBuku").style.display = "block";
+  console.log(books);
+  document.getElementById("editBuku").remove();
+  const parameter = 1;
+  ambilData(parameter);
 };
